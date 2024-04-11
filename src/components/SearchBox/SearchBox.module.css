@@ -1,0 +1,29 @@
+.searchContainer {
+  position: relative;
+}
+.searchParagraf {
+  margin-bottom: 0;
+  font-size: 22px;
+  font-weight: 400;
+}
+.searchForm {
+  width: 350px;
+  border: 1px solid rgb(158, 156, 156);
+  border-radius: 4px;
+  background-color: rgb(221, 236, 248);
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 20px;
+  padding-left: 30px;
+}
+.searchImg {
+  position: absolute;
+  top: 45px;
+  left: 8px;
+}
+.searchClose {
+  position: absolute;
+  top: 45px;
+  left: 320px;
+}

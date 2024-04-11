@@ -1,0 +1,31 @@
+.formBox {
+  display: inline-flex;
+  flex-direction: column;
+  border: 2px solid #acaaaa;
+  border-radius: 4px;
+  width: 350px;
+  padding: 20px;
+}
+.formLabel {
+  font-weight: 500;
+  font-size: 18px;
+}
+.formField {
+  border: 2px solid #acaaaa;
+  border-radius: 2px;
+  padding: 8px;
+  margin-bottom: 10px;
+  background-color: rgb(221, 236, 248);
+}
+.buttonAdd {
+  padding: 5px 10px;
+  font-size: 18px;
+  margin: 0 auto;
+  border: 2px solid #bdb9b9;
+}
+.btnImg {
+  margin-right: 10px;
+}
+.errorMessage {
+  color: red;
+}

@@ -1,0 +1,16 @@
+.cardsBox {
+  position: relative;
+}
+.contactBox {
+  display: flex;
+  align-items: center;
+}
+.contactName {
+  margin-left: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  color: black;
+}
+.btnDelete {
+  margin-right: 10px;
+}
