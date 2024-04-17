@@ -6,7 +6,9 @@ import css from './ContactForm.module.css';
 
 import { addContact } from '../../redux/contactsOps';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContacts } from '../../redux/contacts/selectors';
+import toast, { Toaster } from 'react-hot-toast';
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -26,47 +28,67 @@ const initialValues = {
 
 const ContactForm = () => {
   const dispatch = useDispatch();
+  const currentContactsArray = useSelector(selectContacts);
 
   const handleSubmit = (values, actions) => {
+    const isAdded = currentContactsArray.find(
+      item =>
+        item.name.toLowerCase() === values.name.toLowerCase() ||
+        item.number === values.number
+    );
+    if (isAdded) {
+      toast('This contact is already added to your contacts!');
+      return;
+    }
     dispatch(addContact(values));
     actions.resetForm();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={contactSchema}
-    >
-      <Form className={css.formBox}>
-        <label className={css.formLabel}>Name</label>
-        <Field
-          className={css.formField}
-          name="name"
-          type="text"
-          placeholder="Anna Schmidt"
-        />
-        <div>
-          <ErrorMessage name="name" as="span" />
-        </div>
+    <>
+      <Toaster
+        toastOptions={{
+          style: {
+            background: 'pink',
+            color: 'black',
+          },
+        }}
+      />
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={contactSchema}
+      >
+        <Form className={css.formBox}>
+          <label className={css.formLabel}>Name</label>
+          <Field
+            className={css.formField}
+            name="name"
+            type="text"
+            placeholder="Anna Schmidt"
+          />
+          <div>
+            <ErrorMessage name="name" as="span" />
+          </div>
 
-        <label className={css.formLabel}>Number</label>
-        <Field
-          className={css.formField}
-          name="number"
-          type="number"
-          placeholder="123-45-67"
-        />
-        <div>
-          <ErrorMessage name="number" as="span" />
-        </div>
+          <label className={css.formLabel}>Number</label>
+          <Field
+            className={css.formField}
+            name="number"
+            type="number"
+            placeholder="123-45-67"
+          />
+          <div>
+            <ErrorMessage name="number" as="span" />
+          </div>
 
-        <button className={css.buttonAdd} type="submit">
-          <MdOutlineGroupAdd className={css.btnImg} />
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+          <button className={css.buttonAdd} type="submit">
+            <MdOutlineGroupAdd className={css.btnImg} />
+            Add contact
+          </button>
+        </Form>
+      </Formik>
+    </>
   );
 };
 

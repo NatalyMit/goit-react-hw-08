@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 // Utility to add JWT
@@ -26,6 +27,11 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      iziToast.error({
+        title: 'Error',
+        message:
+          'Sorry, something went wrong during registration. Please try again or contact support',
+      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

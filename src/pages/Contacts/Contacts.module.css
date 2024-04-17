@@ -1,0 +1,13 @@
+.positionSection {
+  position: absolute;
+  top: 110px;
+  left: 5px;
+  right: 5px;
+  padding: 0 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .positionSection {
+    top: 90px;
+  }
+}

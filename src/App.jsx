@@ -1,31 +1,27 @@
 import './App.css';
-import ContactForm from './components/ContactForm/ContactForm';
-import ContactList from './components/ContactList/ContactList';
-import SearchBox from './components/SearchBox/SearchBox';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectError, selectLoading } from './redux/selectors';
+import { useDispatch } from 'react-redux';
+// import { selectContacts, selectError, selectLoading } from './redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from './redux/contactsOps';
+import { useAuth } from './hooks';
+import { refreshUser } from './redux/auth/operations';
+import Loader from './components/Loader/Loader';
+import RouteSection from './components/RouteSection/RouteSection';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
+  const { isRefreshing } = useAuth();
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
-  return (
+  return isRefreshing ? (
     <div>
-      <h1>Phonebook</h1>
-
-      <ContactForm />
-      <SearchBox />
-      {!contacts.length && <b>Create your contact list now</b>}
-      {error && <p>Something went wrong. Try again...</p>}
-      {loading && <p>Please wait.Loading...</p>}
-      <ContactList />
+      <b>Refreshing user...</b>
+      <Loader />
     </div>
+  ) : (
+    <>
+      <RouteSection />
+    </>
   );
 };
