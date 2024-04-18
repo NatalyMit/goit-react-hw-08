@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addContact, deleteContact, fetchContacts } from './operations';
 import { updateContact } from './operations';
+import { logOut } from '../auth/operations';
 
 const initialStateContacts = {
   items: [],
@@ -11,8 +12,6 @@ const initialStateContacts = {
 const handleRejected = (state, { payload }) => {
   state.loading = false;
   state.error = payload;
-  state.isDeleteContact = null;
-  state.isEditContact = null;
 };
 
 const contactsSlice = createSlice({
@@ -33,19 +32,16 @@ const contactsSlice = createSlice({
       .addCase(addContact.pending, state => {
         state.loading = true;
         state.error = false;
-        state.isAddingContact = true;
       })
       .addCase(addContact.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
         state.items.push(payload);
-        state.isAddingContact = false;
       })
       .addCase(addContact.rejected, handleRejected)
-      .addCase(deleteContact.pending, (state, action) => {
+      .addCase(deleteContact.pending, state => {
         state.loading = true;
         state.error = false;
-        state.isDeleteContact = action.meta.arg;
       })
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
         state.loading = false;
@@ -54,26 +50,26 @@ const contactsSlice = createSlice({
           contact => contact.id === payload.id
         );
         state.items.splice(index, 1);
-        state.isDeleteContact = false;
       })
       .addCase(deleteContact.rejected, handleRejected)
-      .addCase(updateContact.pending, (state, action) => {
+      .addCase(logOut.fulfilled, state => {
+        state.items = [];
+        state.error = null;
+        state.loading = false;
+      })
+      .addCase(updateContact.pending, state => {
         state.loading = true;
         state.error = false;
-        state.isEditContact = action.meta.arg.id;
       })
-      .addCase(updateContact.fulfilled, (state, action) => {
+      .addCase(updateContact.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        const index = state.items.findIndex(
-          contact => contact.id === action.payload.id
-        );
-        if (index !== -1) {
-          state.items[index] = action.payload;
-        }
-        state.error = null;
-        state.updatingItem = null;
-        state.isEditContact = false;
+        state.items.find(contact => {
+          if (contact.id === payload.id) {
+            contact.name = payload.name;
+            contact.number = payload.number;
+          }
+        });
       })
       .addCase(updateContact.rejected, handleRejected);
   },

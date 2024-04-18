@@ -7,8 +7,9 @@ import css from './ContactForm.module.css';
 import { addContact } from '../../redux/contactsOps';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/contacts/selectors';
+
 import toast, { Toaster } from 'react-hot-toast';
+import { selectFilteredContacts } from '../../redux/contacts/selectors';
 
 const contactSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,13 +28,13 @@ const initialValues = {
 };
 
 const ContactForm = () => {
+  const visibleContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
-  const currentContactsArray = useSelector(selectContacts);
 
   const handleSubmit = (values, actions) => {
-    const isAdded = currentContactsArray.find(
+    const isAdded = visibleContacts.find(
       item =>
-        item.name.toLowerCase() === values.name.toLowerCase() ||
+        item.name.trim().toLowerCase() === values.name.trim().toLowerCase() ||
         item.number === values.number
     );
     if (isAdded) {
