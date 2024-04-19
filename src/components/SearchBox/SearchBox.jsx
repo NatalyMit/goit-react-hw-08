@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import css from './SearchBox.module.css';
 import { TbDeviceMobileSearch } from 'react-icons/tb';
 import { IoCloseOutline } from 'react-icons/io5';
-import { changeFilter, selectNameFilter } from '../../redux/filtersSlice';
-import { initialStateFilter } from '../../redux/filtersSlice';
+import { changeFilter, initialStateFilter } from '../../redux/filters/slice';
+import { selectNameFilter } from '../../redux/filters/selectors';
 
 const SearchBox = () => {
   const searchValue = useSelector(selectNameFilter);

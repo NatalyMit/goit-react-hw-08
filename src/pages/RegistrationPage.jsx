@@ -2,7 +2,7 @@ import TitleDocument from '../components/TitleDocument';
 
 import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 
-const Registration = () => {
+const RegistrationPage = () => {
   return (
     <>
       <TitleDocument>Register</TitleDocument>
@@ -11,4 +11,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default RegistrationPage;

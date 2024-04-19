@@ -1,7 +1,7 @@
 import TitleDocument from '../components/TitleDocument';
 import LoginForm from '../components/LoginForm/LoginForm';
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <>
       <TitleDocument>Login</TitleDocument>
@@ -10,4 +10,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

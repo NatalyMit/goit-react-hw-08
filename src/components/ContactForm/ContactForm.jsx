@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { MdOutlineGroupAdd } from 'react-icons/md';
 import css from './ContactForm.module.css';
 
-import { addContact } from '../../redux/contactsOps';
+import { addContact } from '../../redux/contacts/operations';
 
 import { useDispatch, useSelector } from 'react-redux';
 

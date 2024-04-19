@@ -1,5 +1,5 @@
 .formBox {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   border: 2px solid #acaaaa;
   border-radius: 4px;
@@ -18,10 +18,25 @@
   background-color: rgb(221, 236, 248);
 }
 .buttonAdd {
-  padding: 5px 10px;
-  font-size: 18px;
-  margin: 0 auto;
-  border: 2px solid #bdb9b9;
+  border-radius: 50px;
+  background-color: #e1dae9;
+  box-shadow: 0 1px 1px #00000024, 0 1px 3px #0000001f, 0 2px 1px #0003;
+  padding: 7px 20px;
+  border: none;
+  color: #00afd7;
+
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.buttonAdd:hover {
+  background-color: #c8b8da;
+  box-shadow: 0 1px 1px #00000024, 0 1px 3px #0000001f, 0 2px 1px #0003;
+  padding: 7px 20px;
+  border: none;
+  color: #00afd7;
+
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btnImg {
   margin-right: 10px;

@@ -30,22 +30,7 @@
     color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.bgImg {
-  height: 100vh;
-  background-image: url('../../assets/img/bg-mobile.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: unset;
-}
-
 @media screen and (min-width: 768px) {
-  .container {
-    position: absolute;
-    top: 47%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-  }
-
   .mainTitle {
     width: 500px;
     font-size: 55px;
@@ -54,25 +39,8 @@
     margin-bottom: 20px;
   }
 
-  .bgImg {
-    height: 100vh;
-    background-image: url('../../assets/img/2.png'),
-      url('../../assets/img/7492002.png');
-    background-position: bottom 0 right -110px;
-  }
-
-  .btnContacts {
-    padding: 15px 50px;
-  }
-
   .btnContacts:hover {
     background-color: #00afd7;
     color: #f0eafa;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .bgImg {
-    background-position: 40% 80%, right;
   }
 }

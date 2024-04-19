@@ -1,5 +1,6 @@
 .searchContainer {
   position: relative;
+  padding: 20px;
 }
 .searchParagraf {
   margin-bottom: 0;
@@ -19,11 +20,11 @@
 }
 .searchImg {
   position: absolute;
-  top: 45px;
-  left: 8px;
+  top: 65px;
+  left: 25px;
 }
 .searchClose {
   position: absolute;
-  top: 45px;
-  left: 320px;
+  top: 65px;
+  left: 345px;
 }

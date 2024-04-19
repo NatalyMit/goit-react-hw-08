@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import ContactList from '../../components/ContactList/ContactList';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import TitleDocument from '../../components/TitleDocument';
-import { fetchContacts } from '../../redux/contacts/contactsOps';
-import SearchBox from '../../components/SearchBox/SearchBox';
-import style from './Contacts.module.css';
+import { fetchContacts } from '../../redux/contacts/operations';
 import { selectError, selectLoading } from '../../redux/contacts/selectors';
 import { LoaderIcon } from 'react-hot-toast';
+import style from './ContactsPage.module.css';
+import SearchBox from '../../components/SearchBox/SearchBox';
 
-const Contacts = () => {
+const ContactsPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -32,4 +32,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;

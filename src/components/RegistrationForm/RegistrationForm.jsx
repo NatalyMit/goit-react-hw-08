@@ -1,10 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import css from './RegistrationForm.module.css';
+import style from './RegistrationForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
+import { MdOutlineMailOutline } from 'react-icons/md';
+import { RiLockPasswordLine } from 'react-icons/ri';
+import { CgProfile } from 'react-icons/cg';
 
-const INITIAL_FORM_DATA = {
+const initialFormData = {
   name: '',
   email: '',
   password: '',
@@ -33,32 +36,53 @@ const RegistrationForm = () => {
 
   return (
     <Formik
-      initialValues={INITIAL_FORM_DATA}
+      initialValues={initialFormData}
       onSubmit={handleSubmit}
       validationSchema={UserRegisterSchema}
     >
-      <Form className={css.formWrapper}>
-        <label className={css.formLabel}>
+      <Form className={style.containerForm}>
+        <label className={style.formLabel}>
           Name
-          <Field name="name" type="text" />
-          <ErrorMessage name="name" component="span" className={css.error} />
+          <div className={style.thumb}>
+            <Field className={style.formInput} name="name" type="text" />
+            <CgProfile className={style.iconInput} size="20" />
+          </div>
         </label>
-        <label className={css.formLabel}>
+        <ErrorMessage
+          name="name"
+          component="span"
+          className={style.errorSpan}
+        />
+        <label className={style.formLabel}>
           Email
-          <Field name="email" type="text" />
-          <ErrorMessage name="email" component="span" className={css.error} />
+          <div className={style.thumb}>
+            <Field className={style.formInput} name="email" type="email" />
+            <MdOutlineMailOutline className={style.iconInput} size="20" />
+          </div>
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={style.errorSpan}
+          />
         </label>
-        <label className={css.formLabel}>
+        <label className={style.formLabel}>
           Password
-          <Field name="password" type="password" />
+          <div className={style.thumb}>
+            <Field
+              className={style.formInput}
+              name="password"
+              type="password"
+            />
+            <RiLockPasswordLine className={style.iconInput} size="20" />
+          </div>
           <ErrorMessage
             name="password"
             component="span"
-            className={css.error}
+            className={style.errorSpan}
           />
         </label>
 
-        <button className={css.formBtn} type="submit">
+        <button className={style.buttonLogin} type="submit">
           Sing Up
         </button>
       </Form>

@@ -1,0 +1,9 @@
+.positionSection {
+  padding: 30px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
